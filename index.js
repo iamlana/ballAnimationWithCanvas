@@ -1,4 +1,3 @@
-;(function () {
-    const canvas = document.getElementById('gameCanvas')
-    const ctx = canvas.getContext('2d')
-  })()
+import { init } from './init.js'
+
+document.addEventListener('DOMContentLoaded', init)
