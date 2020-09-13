@@ -15,28 +15,27 @@ export function init() {
     ctx.strokeStyle = 'gray' // line colors
     ctx.fillStyle = 'black'
     ctx.font = '14px Monospace'
-    ctx.lineWidth = 0.35
+    ctx.lineWidth = 0.39
 
-    for (let x = 0; x < width; x += step) {
-      ctx.beginPath()
-      ctx.moveTo(x, 0)
-      ctx.lineTo(x, height)
-      ctx.stroke()
-
+    for (let x = 0; x <= width; x += step) {
       ctx.fillText(x, x, 12)
     }
 
-
-    for (let y = 0; y < height; y += step) {
-      ctx.beginPath()
-      ctx.moveTo(0, y)
-      ctx.lineTo(width, y)
-      ctx.stroke()
-
+    for (let y = 0; y <= height; y += step) {
       ctx.fillText(y, 0, y)
     }
+
+    for (let x = 0; x < width; x += step) {
+      for (let y = 0; y < height; y += step) {
+        if(x>y){
+          drawCircle(ctx, x, y, 1, '#aaa')
+        }
+      }
+    }
+
     ctx.restore()
   }
+
   createGrid()
 
   ctx.save()
@@ -66,25 +65,23 @@ export function init() {
 
   ctx.restore()
 
-  // const mySquare = new Rectangle(400, 85, 50, 50, 'gold')
-  // mySquare.draw(ctx)
+}
 
-  // const childrenSquares = [
-  //   // top side square - align x with mySquare's left side
-  //   // align bottom with top of mySquare
-  //   new Rectangle(mySquare.left, mySquare.top - 50, 50, 50, 'red'),
-
-  //   // right side square - align x with right side of mySquare
-  //   // align top with mySquare top
-  //   new Rectangle(mySquare.right, mySquare.top, 50, 50, 'green'),
-
-  //   // bottom square
-  //   new Rectangle(mySquare.left, mySquare.bottom, 50, 50, 'blue'),
-
-  //   // left square
-  //   new Rectangle(mySquare.left - 50, mySquare.top, 50, 50, 'magenta')
-  // ]
-  // childrenSquares.forEach(square => square.draw(ctx))
+/**
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} x
+ * @param {number} y
+ * @param {number} radius
+ * @param {string} color
+ */
+function drawCircle(ctx, x, y, radius, color) {
+  ctx.save()
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.arc(x, y, radius, 0, 2 * Math.PI)
+  ctx.closePath()
+  ctx.fill()
+  ctx.restore()
 }
 
 
