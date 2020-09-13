@@ -1,4 +1,4 @@
-import { init } from './init.js'
+import { finallySomeBalls } from './finallySomeBalls.js'
 
 
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', finallySomeBalls)
